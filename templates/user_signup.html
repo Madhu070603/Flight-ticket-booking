@@ -1,0 +1,57 @@
+{% extends 'common.html' %}
+
+{% block body %}
+<div class="login">
+    <div class="container height">
+        <div class="row">
+            <div class="col-sm-6 offset-md-3">
+                <h2 class="Login">Fill your details to signup</h2><br>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="name" autofocus="" required="" id="id_username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" name="email" autofocus="" required="" id="id_email" placeholder="abc@email.com" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-id-card"></i></span>
+                        </div>
+                        <input type="number" class="form-control" name="id" autofocus="" required="" id="id" placeholder="Your id" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa fa-phone"></i></span>
+                        </div>
+                        <input type="number" class="form-control" name="phno" autofocus="" required="" id="id_number" placeholder="Phone number" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+                        </div>
+                        <input type="password" name="password" required="" id="id_password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="submit" class="btn btn-info" value="Sign up" style="width: 100%;">
+                    </div>
+                </form>
+                <div style="text-align: left; color: black;">
+                    Already have an account? <a href="/"><bold> Login here</bold></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

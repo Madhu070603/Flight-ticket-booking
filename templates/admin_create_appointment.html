@@ -1,0 +1,126 @@
+{% extends 'common_admin.html' %}
+
+{% block common_admin %}
+
+<div class="student">
+  <div class="container">
+    <div class="row min-height">
+      <div class="col-sm-12">
+
+        <div class="row main_boder">
+          <div class="col-sm-7">
+            <h3 class="appointmnet_list">Create Flight </h3>
+          </div>
+          <div class="col-sm-5">
+            <form class="form-inline my-2 my-lg-0" method="GET" action="">
+              <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search Date" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+
+        <form method="POST" action="">{% csrf_token %}
+          <div class="row" id="datepairExample">
+            <div class="col-md">
+              <input type="text" class="form-control" name="{{form.exam_name.name}}"
+                id="id_{{form.exam_name.name}}" placeholder="Flight Number" required>
+            </div>
+            <div class="col-md">
+              <input type="date" class="form-control date start" name="{{form.date.name}}"
+                id="id_{{form.date.name}}" placeholder="Date Ex. 30.10.12" required>
+            </div>
+            <div class="col-md">
+              <input type="time" class="form-control time start" name="{{form.time_start.name}}"
+                id="id_{{form.time_start.name}}" required placeholder="Time Ex. 01.00 PM">
+            </div>
+            <div class="col-md">
+              <input type="number" class="form-control" name="capacity" id="id_{{form.room_number.name}}" required
+                placeholder="Capacity">
+            </div>
+            <div class="col-md">
+              <button type="submit" class="btn btn-success">Add <i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        </form>
+        <br>
+      </div>
+
+      <script>
+        $('#datepairExample .time').timepicker({
+          'showDuration': true,
+          'timeFormat': 'g:ia'
+        });
+
+        $('#datepairExample .date').datepicker({
+          'format': 'd/m/yyyy',
+          'autoclose': true
+        });
+
+        $('#datepairExample').datepair();
+      </script>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Flight Number</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+             
+              <th scope="col">Capacity</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for appoint in query %}
+            {% if appoint.appointment_with != '' %}
+            <tr>
+              <td>{{ appoint.exam_name }}</td>
+              <td>{{ appoint.date }}</td>
+              <td>{{ appoint.time_start }} - {{ appoint.time_end }}</td>
+            
+              <td>{{ appoint.capacity }}</td>
+              <td>
+                <button title="Already booked, Not editable" type="button" class="btn btn-primary">Booked By:
+                  {{ appoint.appointment_with }}</button>
+              </td>
+            </tr>
+            {% endif %}
+            {% if appoint.appointment_with == '' %}
+            <tr>
+              <td>{{ appoint.exam_name }}</td>
+              <td>{{ appoint.date }}</td>
+              <td>{{ appoint.time_start }} - {{ appoint.time_end }}</td>
+              <td>{{ appoint.room_number }}</td>
+              <td>{{ appoint.capacity }}</td>
+              <td>
+                <a href="{% url 'appointment_delete' id=appoint.id %}">
+                  <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                </a>
+                <a href="{% url 'admin_appointment_update' id=appoint.id %}">
+                  <button type="submit" class="btn btn-danger"><i class="far fa-edit"></i></button>
+                </a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        Copyright 2023, Developed by Madhumitha M
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock common_admin %}

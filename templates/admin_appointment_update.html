@@ -1,0 +1,42 @@
+{% extends 'common_admin.html' %}
+
+{% block common_admin %}
+
+<div class="student">
+    <div class="container">
+        <div class="row min-height">
+            <div class="col-sm-12">
+
+                <div class="row main_border">
+                    <div class="col-md-7">
+                        <h3 class="appointment_list">Update slot</h3>
+                    </div>
+                    
+                </div>
+
+                <form method="POST" action="">{% csrf_token %}
+                    <div class="row" id="datepairExample">
+                        <div class="col-md-6 col-lg-3">
+                            <input type="text" class="form-control" name="{{form.exam_name.name}}" required id="id_{{form.exam_name.name}}" placeholder="{{form.exam_name.value}}">
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <input type="date" class="form-control date start" name="{{form.date.name}}" required id="id_{{form.date.name}}" placeholder="{{form.date.value}}">
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <input type="time" class="form-control time start" name="{{form.time_start.name}}" required id="id_{{form.time_start.name}}" placeholder="{{form.time_start.value}}">
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <input type="number" class="form-control" name="max_number_of_appointments" required id="id_max_number_of_appointments" placeholder="Capacity">
+                        </div>
+                      
+                        <div class="col-12 mt-3">
+                            <button class="btn btn-primary" type="submit">Update Slot</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock common_admin %}

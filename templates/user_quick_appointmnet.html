@@ -1,0 +1,64 @@
+{% extends 'common_user.html' %}
+
+{% block common_user %}
+<div class="user">
+    <div class="container">
+        <div class="row min-height">
+            <div class="col-sm-12">
+                <div class="row main_boder">
+                    <div class="col-sm-7">
+                        <h3 class="appointment_list">Flight Bookings</h3>
+                    </div>
+                    <div class="col-sm-5">
+                        <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                            <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search By Teacher Name"
+                                   aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="col">Flight Number</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Available Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for appoint in query %}
+                    <tr>
+                        <td scope="row">{{appoint.exam_name}}</td>
+                        <td>{{appoint.date}}</td>
+                        <td>
+                            <span class="inline">{{ appoint.time_start }}</span>
+                        </td>
+                        
+                        <td>
+                            {% if appoint.booked_count == appoint.capacity %}
+                            <span><button class="btn btn-danger" type="submit" disabled>Flight is full</button></span>
+                            {% else %}
+                            <a href="/user/update/{{appoint.id}}">
+                                <button class="btn btn-success" type="submit">Book Now</button>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                &copy; 2023, Developed by Madhumitha M
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock common_user %}

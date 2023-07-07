@@ -1,0 +1,35 @@
+{% extends 'common.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row user_nav">
+        <div class="col-sm-8">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" href='/user/my_slots'>My Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='/user/book_slot'>Book Flight</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-4">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <p>Welcome</p>
+                </li>
+                <li class="nav-item">
+                    <p>{{user_name}}</p>
+                </li>
+                <li class="nav-item justify-content-end">
+                    <a class="nav-link" href='{% url "logout"%}'>Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% block common_user %}
+{% endblock common_user %}
+{% endblock %}
